@@ -114,7 +114,7 @@ async function pdfGenerator(req, res) {
 app.post("/generate", pdfGenerator);
 app.get("/", (req, res) => {
   // const data = JSON.parse(JSON.stringify(req.body.resumeData));
-  res.render("resume", req.body.resumeData);
+  res.render("home");
 });
 
 app.listen(port, () => {
