@@ -5,7 +5,7 @@ import { fileURLToPath } from "url";
 import path from "path";
 import puppeteer from "puppeteer";
 import cors from "cors";
-import fs from 'fs'
+import fs from "fs";
 const app = express();
 //setting view engine to ejs
 app.set("view engine", "ejs");
@@ -13,11 +13,7 @@ const port = 3000;
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const baseDirectory = path.join(__dirname, "./");
 //setting CORS
-app.use(
-  cors({
-    origin: "https://resumebuilderrohit.netlify.app",
-  })
-);
+app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -70,7 +66,7 @@ async function pdfGenerator(req, res) {
   // const webURL = `${req.protocol}://${req.get("host")}/preview`;
   const html = await ejs.renderFile(ejsTemplatePath, req.body.resumeData);
   const cssFilePath = path.join(__dirname, "public", "css", "sample1.css");
-  const css = fs.readFileSync(cssFilePath, 'utf8');
+  const css = fs.readFileSync(cssFilePath, "utf8");
   const htmlWithCSS = `
     <html>
       <head>
@@ -83,9 +79,9 @@ async function pdfGenerator(req, res) {
     </html>
   `;
   await page.emulateMediaType("screen");
-  await page.emulateMediaFeatures([{ name: 'color-gamut', value: 'srgb' }]);
+  await page.emulateMediaFeatures([{ name: "color-gamut", value: "srgb" }]);
 
-  await page.setContent(htmlWithCSS,{waitUntil:"networkidle2"});
+  await page.setContent(htmlWithCSS, { waitUntil: "networkidle2" });
 
   // const d = new Date();
   // const pdf = await page.pdf({
