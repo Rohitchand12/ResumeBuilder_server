@@ -15,7 +15,7 @@ const baseDirectory = path.join(__dirname, "./");
 //setting CORS
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://resumebuilderrohit.netlify.app",
   })
 );
 app.use(express.json());
