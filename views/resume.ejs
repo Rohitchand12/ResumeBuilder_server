@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/sample1.css" />
+    <title>Resume</title>
+  </head>
+  <body>
+    <main class="main_container">
+      <section class="resume_container">
+        <!-- Introduction section  -->
+        <% if(locals.basicDetails){ %>
+        <section class="intro_section">
+          <div class="left">
+            <h3 class="bigger"><%= basicDetails.firstname %> <%= basicDetails.lastname %></h3>
+            <p><%= basicDetails.branch %></p>
+            <p>Graphic era hill university</p>
+          </div>
+          <div class="right">
+            <a href=<%= basicDetails.Linkedin %>
+              >Linkedin profile</a
+            >
+            <a>Github profile </a>
+            <a><%= basicDetails.email %></a>
+          </div>
+        </section>
+        <% } %>
+
+        <!-- education section -->
+        <% if(locals.EducationDetails) {%>
+        <section class="education_section">
+          <div
+            style="grid-column: span 12; margin-bottom: 2px"
+            class="rule"
+          ></div>
+          <!-- heading section  -->
+          <div style="font-weight: bold" class="education_qualification">
+            Qualification
+          </div>
+          <div style="font-weight: bold" class="education_university">
+            University
+          </div>
+          <div style="font-weight: bold" class="education_year">Year</div>
+          <div style="font-weight: bold" class="education_grade">CGPA/%</div>
+
+          <div
+            style="grid-column: span 12; margin-bottom: 4px; margin-top: 2px"
+            class="rule"
+          ></div>
+          <% EducationDetails.forEach((edu) => { %>
+          <div class="education_qualification"><%= edu.qualification %></div>
+          <div class="education_university"><%=edu.institute%></div>
+          <div class="education_year"><%= edu.fromyear %>-<%= edu.toyear %></div>
+          <div class="education_grade"><%=edu.grades%></div>
+          <%})%>
+          <div style="grid-column: span 12; margin: 4px 0px" class="rule"></div>
+        </section>
+        <% } %>
+        <!-- Internship section  -->
+        <% if(locals.InternshipDetails){ %>
+        <section class="internship_sections">
+          <header>INTERNSHIPS</header>
+          <div class="rule_thin"></div>
+          <div>
+            <% InternshipDetails.forEach((internship,index) => {%>
+            <div style="margin-top: 10px">
+              <div class="experience_heading">
+                <h1 style="font-weight: bold"><%= internship.role %>,<%= internship.company %></h1>
+                <% 
+                const fromd = new Date(internship.from) ;
+                const frommonth = fromd.toLocaleDateString("en-US", { month: "long" });
+                const fromyear = fromd.getFullYear();
+                const tod = new Date(internship.to) ;
+                const tomonth = tod.toLocaleDateString("en-US", { month: "long" });
+                const toyear = tod.getFullYear();
+                %>
+                <p><i><%= frommonth %>,<%= fromyear %>-<%= tomonth %>,<%= toyear %></i></p>
+              </div>
+              <ul class="internship_desc" style="list-style: disc; padding-left: 10px">
+                 <% internship.description.split('.').forEach(desc=>{%>
+                  <li><%= desc %></li>
+                 <%}) %>
+              </ul>
+            </div>
+            <%})%>
+          </div>
+        </section>
+        <% } %>
+
+        <!-- Experience section  -->
+        <% if(locals.ExperienceDetails) {%>
+        <section class="experience_section">
+          <header>EXPERIENCE</header>
+          <div class="rule_thin"></div>
+          <div>
+            <%dummyInternships.forEach((internship) => {%>
+            <div style="margin-top: 10px">
+              <div class="experience_heading">
+                <h1 style="font-weight: bold"><%=internship.title%></h1>
+                <p><i><%=internship.duration%></i></p>
+              </div>
+              <ul style="list-style: disc; padding-left: 10px">
+                <%internship.desc.forEach((data) => {%>
+                <li><%=data%></li>
+                <%})%>
+              </ul>
+            </div>
+            <%})%>
+          </div>
+        </section>
+        <% } %>
+      </section>
+    </main>
+  </body>
+</html>

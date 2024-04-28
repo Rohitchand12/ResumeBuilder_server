@@ -1,0 +1,149 @@
+@page{
+    size:A4;
+    margin:0;
+}
+html {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important; 
+  }
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+:root{
+    --page-width:8.3in;
+    --page-height:11.7in;
+    --normal-font:11pt;
+    --heading-font:14pt;
+    --bigger-font:13pt
+}
+body{
+    margin:0;
+    padding:0;
+    overflow-x: hidden;
+}
+header{
+    font-size: var(--heading-font);
+    font-family:'Times New Roman', Times, serif;
+    font-weight: 500;
+}
+.bigger{
+    font-size: var(--heading-font);
+    font-weight: bold;
+}
+.rule{
+    height:0px;
+    border:1px solid black;
+}
+.rule_thin{
+    height:0px;
+    border:none;
+    border-bottom:0.3px solid black;
+}
+.main_container{
+    height:100%;
+    width:100%;
+    background-color: rgb(203, 215, 226);
+    display:flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+.resume_container{
+    width:var(--page-width);
+    aspect-ratio: 1/1.414;
+    background-color: white;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding:0.3in;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight:100;
+}
+
+/*****************intro section ****************** */
+.intro_section{
+    display:grid;
+    grid-template-columns: auto auto;
+    font-weight: 600;
+    font-size:var(--normal-font);
+}
+.intro_section .left{
+    font-size: var(--normal-font);
+}
+.intro_section .left p,h3{
+    margin:4px;
+}
+.intro_section .right{
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    font-size: var(--normal-font);
+}
+
+/************ education section ****************/
+
+.education_section{
+    display:grid;
+    grid-template-columns: repeat(12,1fr);
+    margin:1% 0%;
+    font-size:var(--normal-font);
+    font-weight:100;
+}
+.education_qualification{
+    grid-column: span 2;
+    font-weight: lighter;
+    font-size:var(--normal-font);
+    font-weight:100;
+}
+.education_university{
+    grid-column: span 6;
+    font-weight: lighter;
+    font-size:var(--normal-font);
+    font-weight:100;
+}
+.education_year{
+    grid-column: span 2;
+    font-weight: lighter;
+    font-size:var(--normal-font);
+    font-weight:100;
+}
+.education_grade{
+    grid-column: span 2;
+    font-weight: lighter;
+    font-size:var(--normal-font);
+    font-weight:100;
+}
+.education_details{
+    display:flex;
+    justify-content: start;
+    align-items: center;
+    font-size:var(--normal-font);
+    font-weight:100;
+}
+/* internship section  */
+.internship_desc{
+    margin-top: 10px;
+    font-size:var(--normal-font);
+    font-weight:100;
+}
+
+/* experience section */
+
+.experience_section{
+    margin-top:1%;
+}
+.experience_desc{
+    margin-top:10px;
+    font-size:var(--normal-font);
+    font-weight:100;
+}
+.experience_heading{
+    display:flex;
+    justify-content: space-between;
+    font-size:12pt;
+}
+.experience_heading p{
+    font-size:10pt;
+    font-weight:100;
+}
