@@ -12,8 +12,11 @@ app.set("view engine", "ejs");
 const port = 3000;
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const baseDirectory = path.join(__dirname, "./");
+
 //setting CORS
-app.use(cors());
+app.use(cors({
+  origin:['http://localhost:5173','https://resumebuilderrohit.netlify.app/']
+}))
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
