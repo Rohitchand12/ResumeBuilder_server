@@ -14,9 +14,22 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const baseDirectory = path.join(__dirname, "./");
 
 //setting CORS
-app.use(cors({
-  origin:['http://localhost:5173','https://resumebuilderrohit.netlify.app/']
-}))
+app.use((req, res, next) => {
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://resumebuilderrohit.netlify.app"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS,CONNECT,TRACE"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Authorization, X-Content-Type-Options, Accept, X-Requested-With, Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+  );
+  next();
+});
+
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
