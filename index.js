@@ -4,7 +4,6 @@ import ejs from "ejs";
 import { fileURLToPath } from "url";
 import path from "path";
 import puppeteer from "puppeteer";
-import cors from "cors";
 import fs from "fs";
 const app = express();
 //setting view engine to ejs
@@ -17,11 +16,11 @@ const baseDirectory = path.join(__dirname, "./");
 app.use((req, res, next) => {
   res.setHeader(
     "Access-Control-Allow-Origin",
-    "https://resumebuilderrohit.netlify.app"
+    "https://resumebuilderrohit.netlify.app , http://localhost:5173"
   );
   res.setHeader(
     "Access-Control-Allow-Methods",
-    "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS,CONNECT,TRACE"
+    "GET,PUT"
   );
   res.setHeader(
     "Access-Control-Allow-Headers",
@@ -33,47 +32,8 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
-const dummyEducation = [
-  {
-    qualification: "Graduation",
-    university: "Graphic era hill university, Dehradun",
-    year: "2021-2025",
-    grade: "8.28 CGPA",
-  },
-  {
-    qualification: "Intermediate",
-    university: "G.S.Convent",
-    year: "2020",
-    grade: "89%",
-  },
-  {
-    qualification: "Matriculation",
-    university: "Shelley School",
-    year: "2018",
-    grade: "89%",
-  },
-];
-const dummyInternships = [
-  {
-    title: "Software Engineering Intern at ABC Tech Solutions:",
-    duration: "summer 2024",
-    desc: [
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae in cum aliquid ratione a velit repudiandae perspiciatis voluptatem perferendis facere.",
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos, ratione. Fugit aliquam aperiam numquam illo totam, ad sint molestiae consequuntur?",
-      "Duration: 4 months",
-    ],
-  },
-  {
-    title: "Software Engineering Intern at ABC Tech Solutions:",
-    duration: "summer 2023",
-    desc: [
-      "Software Engineering Intern at ABC Tech Solutions:",
-      "Collaborated with senior engineers to design and implement new features.",
-      "Conducted code reviews and debugging sessions.",
-      "Duration: 4 months",
-    ],
-  },
-];
+
+//controllers
 
 async function pdfGenerator(req, res) {
   const browser = await puppeteer.launch();
