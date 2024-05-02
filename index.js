@@ -6,13 +6,11 @@ import path from "path";
 import puppeteer from "puppeteer";
 import fs from "fs";
 const app = express();
+
 //setting view engine to ejs
 app.set("view engine", "ejs");
-const port = 3000;
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const baseDirectory = path.join(__dirname, "./");
 
-//setting CORS
+//cors
 app.use((req, res, next) => {
   const allowedOrigins = ['https://resumebuilderrohit.netlify.app',' http://localhost:5173'];
   const origin = req.headers.origin;
@@ -27,15 +25,19 @@ app.use((req, res, next) => {
     "Access-Control-Allow-Headers",
     "Content-Type"
   );
-  next();
+  if ('OPTIONS' == req.method) res.send(200);
+  else next();
 });
+
+const port = 3000;
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const baseDirectory = path.join(__dirname, "./");
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
 
 //controllers
-
 async function pdfGenerator(req, res) {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
@@ -88,6 +90,7 @@ app.post("/generate", pdfGenerator);
 app.get("/", (req, res) => {
   // const data = JSON.parse(JSON.stringify(req.body.resumeData));
   res.render("home");
+  // console.log(req.headers.origin);
 });
 
 app.listen(port, () => {
