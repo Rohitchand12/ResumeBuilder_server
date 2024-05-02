@@ -14,17 +14,18 @@ const baseDirectory = path.join(__dirname, "./");
 
 //setting CORS
 app.use((req, res, next) => {
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://resumebuilderrohit.netlify.app , http://localhost:5173"
-  );
+  const allowedOrigins = ['https://resumebuilderrohit.netlify.app',' http://localhost:5173'];
+  const origin = req.headers.origin;
+  if(allowedOrigins.includes(origin)){
+    res.setHeader('Access-Control-Allow-Origin',origin);
+  }
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET,PUT"
   );
   res.setHeader(
     "Access-Control-Allow-Headers",
-    "Content-Type, Authorization, X-Content-Type-Options, Accept, X-Requested-With, Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+    "Content-Type"
   );
   next();
 });
