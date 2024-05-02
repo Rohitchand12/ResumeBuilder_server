@@ -23,7 +23,7 @@ app.use((req, res, next) => {
   );
   res.setHeader(
     "Access-Control-Allow-Headers",
-    "Content-Type"
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
   );
   if ('OPTIONS' == req.method) res.send(200);
   else next();
@@ -96,3 +96,5 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
   console.log("listening on port 3000");
 });
+
+export default app;
